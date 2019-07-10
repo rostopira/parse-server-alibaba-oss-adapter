@@ -57,7 +57,8 @@ OSSAdapter.prototype.getFileData = function(filename) {
 };
 
 OSSAdapter.prototype.getFileLocation = function(config, filename) {
-    return this._ossClient.signatureUrl(filename);
+    const link = this._ossClient.signatureUrl(filename);
+    return link.substr(0, 4) + "s" + link.substr(4);
 };
 
 module.exports = OSSAdapter;
