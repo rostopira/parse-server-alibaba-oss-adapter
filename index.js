@@ -24,7 +24,6 @@ function optionsFromArguments(args) {
     options = requiredOrFromEnvironment(options, 'accessKeyId', 'OSS_ACCESS_KEY_ID');
     options = requiredOrFromEnvironment(options, 'accessKeySecret', 'OSS_ACCESS_KEY_SECRET');
     options = requiredOrFromEnvironment(options, 'bucket', 'OSS_BUCKET');
-    options = fromEnvironmentOrDefault(options, 'endpoint', 'OSS_ENDPOINT', null);
     options = fromEnvironmentOrDefault(options, 'internal', 'OSS_INTERNAL', false);
     options = fromEnvironmentOrDefault(options, 'secure', 'OSS_SECURE', !options['internal']);
     return options;
@@ -36,7 +35,8 @@ function optionsFromArguments(args) {
  * accessKeyId       / OSS_ACCESS_KEY_ID
  * accessKeySecret   / OSS_ACCESS_KEY_SECRET
  * bucket            / OSS_BUCKET
- * endpoint          / OSS_ENDPOINT **/
+ * internal          / OSS_INTERNAL
+ * secure            / OSS_SECURE            **/
 function OSSAdapter() {
     let options = optionsFromArguments(arguments);
     this._ossClient = new OSS(options);
