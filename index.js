@@ -7,7 +7,9 @@ const OSS = require('ali-oss');
 function requiredOrFromEnvironment(options, key, env) {
     options[key] = options[key] || process.env[env];
     if (!options[key]) {
-        throw `OSSAdapter requires an ${key} in options or ${env} in environment`;
+        const errorMessage = `OSSAdapter requires an ${key} in options or ${env} in environment`;
+        console.error(errorMessage);
+        throw errorMessage;
     }
     return options;
 }
