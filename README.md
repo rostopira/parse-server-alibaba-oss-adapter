@@ -2,11 +2,11 @@
 
 Parse Server adapter for AlibabaCloud Object Storage Service
 
-# installation
+# Installation
 
 `npm install git+https://git@github.com/rostopira/parse-server-alibaba-oss-adapter.git`
 
-# usage with parse-server
+# Usage
 
 ```
 const OSSAdapter = require('parse-server-alibaba-oss-adapter');
@@ -25,7 +25,7 @@ new ParseServer({
 });
 ```
 
-### using environment variables
+### Using environment variables
 
 Set your environment variables:
 
