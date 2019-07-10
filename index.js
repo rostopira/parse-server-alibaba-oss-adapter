@@ -40,6 +40,13 @@ function optionsFromArguments(args) {
 function OSSAdapter() {
     let options = optionsFromArguments(arguments);
     this._ossClient = new OSS(options);
+    if (options['internal'] || !options['secure']) {
+        options['internal'] = false;
+        options['secure'] = true;
+        this._ossExternalClient = new OSS(options);
+    } else {
+        this._ossExternalClient = this._ossClient;
+    }
 }
 
 OSSAdapter.prototype.createFile = function (filename, data, contentType) {
@@ -57,8 +64,7 @@ OSSAdapter.prototype.getFileData = function(filename) {
 };
 
 OSSAdapter.prototype.getFileLocation = function(config, filename) {
-    const link = this._ossClient.signatureUrl(filename);
-    return link.substr(0, 4) + "s" + link.substr(4);
+    return this._ossExternalClient.signatureUrl(filename);
 };
 
 module.exports = OSSAdapter;
