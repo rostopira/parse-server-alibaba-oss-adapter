@@ -51,7 +51,7 @@ function OSSAdapter() {
     }
 }
 
-OSSAdapter.prototype.createFile = function (filename, data, contentType) {
+OSSAdapter.prototype.createFile = function (filename, data, contentType, options = {}) {
     let headers = {};
     if (options.metadata.ACL !== undefined && options.metadata.ACL !== '') {
         headers = {
