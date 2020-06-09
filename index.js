@@ -52,8 +52,15 @@ function OSSAdapter() {
 }
 
 OSSAdapter.prototype.createFile = function (filename, data, contentType) {
+    let headers = {};
+    if (options.metadata.ACL !== undefined && options.metadata.ACL !== '') {
+        headers = {
+            "x-oss-object-acl": options.metadata.ACL
+        }
+    }
     return this._ossClient.put(filename, data, {
-        mime: contentType
+        mime: contentType,
+        headers
     });
 };
 
